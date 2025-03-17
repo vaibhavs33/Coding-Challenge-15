@@ -123,6 +123,27 @@ document.getElementById('newRiskBtn').addEventListener('click', () => {
     }
 })
 
+//Task 5 - Bulk Risk Updates
+//Increasing risk levels when the "Increase Risk Level" button is clicked
+document.getElementById('increaseRiskBtn').addEventListener('click', () => {
+    const allRiskCards = document.querySelectorAll('.risk-card');
+    const arrRiskCards = Array.from(allRiskCards);
+    arrRiskCards.forEach((card ) => {
+        const cardRiskLevel = card.querySelector('.risk-level');
+        const cardRiskLevelValue = cardRiskLevel.textContent.replace('Risk Level: ','');
+        
+        //Increasing the risk level based on the current state
+        if(cardRiskLevelValue.toLowerCase() == 'low'){
+            cardRiskLevel.textContent = 'Risk Level: Medium';
+            styleSingleCard(card);
+        }
+        else if(cardRiskLevelValue.toLowerCase() == 'medium'){
+            cardRiskLevel.textContent = 'Risk Level: High';
+            styleSingleCard(card);
+        }
+    })
+})
+
 //Task 4 - Risk Categorization
 //Applying the appropriate background color based on the risk level
 function styleSingleCard(currentCard){
