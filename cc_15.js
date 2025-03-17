@@ -89,6 +89,17 @@ function addRiskItem(riskName, riskLevel, department) {
     
     //Appending the risk card to the dashboard
     divRiskDashboard.appendChild(riskCard);
+
+    //Task 6 - Event Propagation Fix
+    //Preventing clicks inside the risk card from affecting the dashboard
+    riskCard.addEventListener('click', (event) => {
+        console.log(`Clicked on risk: ${riskName}`);
+            
+        //Ensures clicking inside a risk card does not trigger unwanted events on the dashboard
+        event.stopPropagation();
+    });
+
+    return riskCard;
 }
 
 //Task 2 - Adding Risk Items
