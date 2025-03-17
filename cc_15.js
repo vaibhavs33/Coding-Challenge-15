@@ -57,6 +57,19 @@ function addRiskItem(riskName, riskLevel, department) {
     dept.textContent = `Department: ${department}`;
     riskCard.append(dept);
 
+    //Task 4 - Risk Categorization
+    //Applying the background color based on the risk level 
+    //(red for high risk, yellow for medium risk, and green for low risk)
+    if (riskLevel.toLowerCase() == 'high') {
+        riskCard.classList.add('high-risk')
+    }
+    else if (riskLevel.toLowerCase() == 'medium') {
+        riskCard.classList.add('medium-risk')
+    }
+    else if (riskLevel.toLowerCase() == 'low') {
+        riskCard.classList.add('low-risk')
+    }
+
     //Task 3 - Removing Risk Items
     //Creating a "Resolve" button to remove the risk card
     const resolveBtn = document.createElement('button');
@@ -109,3 +122,37 @@ document.getElementById('newRiskBtn').addEventListener('click', () => {
         departmentInput.value = "";
     }
 })
+
+//Task 4 - Risk Categorization
+//Applying the appropriate background color based on the risk level
+function styleSingleCard(currentCard){
+    const riskLevel = currentCard.querySelector('.risk-level').textContent.replace('Risk Level: ','');
+    
+    //Checks if the priority is "High" and updates the styling
+    if(riskLevel.toLowerCase() === 'high'){
+        //Removing all risk styles
+        removeCurrentRiskStyle(currentCard);
+        
+        //Applying high risk style
+        currentCard.classList.add('high-risk');
+    }
+    else if(riskLevel.toLowerCase() === 'medium'){
+        //Removing all risk styles
+        removeCurrentRiskStyle(currentCard);
+        
+        //Applying medium risk style
+        currentCard.classList.add('medium-risk');
+    }
+    else if(riskLevel.toLowerCase() === 'low'){
+        //Removing all risk styles
+        removeCurrentRiskStyle(currentCard);
+        
+        //Applying low risk style
+        currentCard.classList.add('low-risk');
+    }
+}
+
+//Resetting risk styles before applying new level
+function removeCurrentRiskStyle(currentCard){
+    currentCard.classList.remove('high-risk', 'medium-risk', 'low-risk');
+}
