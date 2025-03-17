@@ -56,6 +56,26 @@ function addRiskItem(riskName, riskLevel, department) {
     dept.setAttribute('class', 'department');
     dept.textContent = `Department: ${department}`;
     riskCard.append(dept);
+
+    //Task 3 - Removing Risk Items
+    //Creating a "Resolve" button to remove the risk card
+    const resolveBtn = document.createElement('button');
+    resolveBtn.setAttribute('class', 'resolve-btn');
+    resolveBtn.textContent = 'Resolve';
+    riskCard.append(resolveBtn); 
+
+    //Adding event listener to remove the risk card when resolved
+    resolveBtn.addEventListener('click', (event) => {
+        //Removing the card from the dashboard
+        riskCard.remove();
+        console.log(`Resolved risk: ${riskName}`);
+            
+        //Ensures clicking inside a risk card does not trigger unwanted events on the dashboard
+        event.stopPropagation();
+    });
+    
+    //Appending the risk card to the dashboard
+    divRiskDashboard.appendChild(riskCard);
 }
 
 //Task 2 - Adding Risk Items
